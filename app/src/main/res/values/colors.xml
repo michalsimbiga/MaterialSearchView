@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="search_shadow">#99000000</color>
+    <color name="colorPrimary">#FF313D50</color>
+    <color name="colorPrimaryDark">@color/app_background_gradient_upper</color>
+    <color name="colorAccent">@color/accent_enabled</color>
+
+    <color name="app_background_gradient_upper">#FF2A3648</color>
+    <color name="accent_enabled">#FF00AFEF</color>
+    <color name="app_background_gradient_middle">#FF39465A</color>
+    <color name="app_background_gradient_lower">#FF5C6C83</color>
+
+</resources>

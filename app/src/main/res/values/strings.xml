@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Template</string>
+    <string name="search_name" translatable="false">Search</string>
+    <string name="search_behavior" translatable="false">com.lapism.search.behavior.SearchBehavior</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

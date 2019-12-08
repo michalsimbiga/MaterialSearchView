@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialSearchView">
+        <attr name="hint" format="string"/>
+        <attr name="search_icon" format="reference"/>
+        <attr name="back_icon" format="reference"/>
+        <attr name="voice_icon" format="reference"/>
+        <attr name="clear_icon" format="reference"/>
+    </declare-styleable>
+</resources>
