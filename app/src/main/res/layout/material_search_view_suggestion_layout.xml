@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/search_item_container"
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="60dp">
 
         <ImageView
@@ -19,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/ic_time"
-            android:background="@drawable/suggestion_button_image_background"
+            app:srcCompat="@drawable/ic_suggestion"
+            android:background="@drawable/suggestion_image_button_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

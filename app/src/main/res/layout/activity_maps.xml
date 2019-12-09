@@ -17,11 +17,13 @@
         android:id="@+id/material_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:back_icon="@drawable/ic_back"
+        app:clear_icon="@drawable/ic_clear"
         app:search_icon="@drawable/ic_search"
         app:voice_icon="@drawable/ic_voice"
-        app:clear_icon="@drawable/ic_close"
-        app:back_icon="@drawable/ic_back"
-        app:hint="Search"
+        app:hint="@string/places_autocomplete_search_hint"
+        app:card_content_background="@drawable/material_search_view_background"
+        android:elevation="1dp"
         />
 
 </FrameLayout>

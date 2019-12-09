@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -36,17 +37,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        material_search_view.setSuggestionsAdapter(adapter)
-        material_search_view.setOnTextChangedCallbacks { query ->
-            Log.i("TESTING", "setOnTextChangedCallback $query")
-            getSuggestions(query)
+        with(material_search_view) {
+            setSuggestionsAdapter(adapter)
+            setOnTextChangedCallbacks { newText ->
+                if (newText.isNotEmpty()) {
+                    getSuggestions(newText)
+                    adapter.setLoading()
+                }
+            }
+            setOnVoiceIconCallback { onVoiceSearchClicked() }
+            setOnViewFocusesCallback { }
         }
     }
 
     private fun getSuggestions(newText: String) {
 
-        val apiKey = "YourApiKeyGoesHere"
-        Places.initialize(applicationContext, apiKey)
+        val apikey = "YourApiKey"
+        Places.initialize(applicationContext, apikey)
 
         val client = Places.createClient(applicationContext)
 
@@ -68,6 +75,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             .addOnFailureListener {
                 Log.i("TESTING", "SUGGESTION exteption $it")
+                adapter.setSuggestions(listOf())
             }
 
     }
@@ -90,10 +98,26 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
+    private fun onVoiceSearchClicked() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Locate Address")
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+
+        startActivityForResult(intent, VOICE_RECOGNITION_CODE)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == MaterialSearchView.VOICE_RECOGNITION_CODE)
+        if (requestCode == VOICE_RECOGNITION_CODE)
             data?.let { material_search_view.handleVoiceData(it) }
+    }
+
+    companion object {
+        private const val VOICE_RECOGNITION_CODE = 312
     }
 }
